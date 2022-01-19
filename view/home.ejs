@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" ></script>
+</head>
+<body>
+    <input type="text" id="message"><button onclick="sendMessage()">send</button>
+
+    <h1 id="show"></h1>
+    <script>
+        const socket = io('http://localhost:3000')
+
+        socket.on('connection')
+
+        socket.on('message',(data)=>{
+            document.getElementById('show').innerText = data;
+        })
+
+        const sendMessage = ()=>{
+            socket.emit('message',document.getElementById('message').value)
+        }
+    </script>
+</body>
+</html>
